@@ -1,5 +1,5 @@
 // Question: Pourquoi créer des services séparés ?
-// Réponse: 
+// Réponse: Créer des services séparés permet de favoriser la modularité, la réutilisabilité, la maintenance facilitée, ainsi qu'une meilleure gestion des dépendances et de l'évolutivité de l'application.
 
 const { ObjectId } = require('mongodb');
 
