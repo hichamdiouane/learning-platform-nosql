@@ -4,7 +4,8 @@
 // Réponse : Si une variable requise est manquante, l'application peut rencontrer des erreurs de configuration, échouer au démarrage, ou se comporter de manière imprévisible, ce qui peut entraîner des problèmes de performance, de sécurité ou de fonctionnalité.
 
 const dotenv = require('dotenv');
-dotenv.config();
+const path = require('path');
+dotenv.config({ path: path.resolve(__dirname, '../../.env') });
 
 const requiredEnvVars = [
   'MONGODB_URI',
@@ -16,6 +17,13 @@ const requiredEnvVars = [
 function validateEnv() {
   // TODO: Implémenter la validation
   // Si une variable manque, lever une erreur explicative
+  requiredEnvVars.forEach((varName) => {
+    if (!process.env[varName]) {
+      console.log(`Checking environment variable: ${varName}`);
+      console.log(`Value: ${process.env[varName] || 'Not set'}`);
+      throw new Error(`Missing required environment variable: ${varName}`);
+    }
+  });
 }
 
 module.exports = {
